@@ -8,7 +8,7 @@ WORKDIR /app
 COPY package*.json ./
 
 # Remove node_modules and package-lock.json, then install dependencies
-RUN rm -rf node_modules package-lock.json && yarn install
+RUN rm -rf node_modules package-lock.json && yarn install --network-timeout 1000000
 
 # Copy the rest of the application code
 COPY . .
@@ -17,7 +17,8 @@ COPY . .
 RUN yarn run build
 
 # Expose the port the app runs on
-EXPOSE 5111
+EXPOSE 5188
 
-# Start the application in preview mode on port 5111
-CMD ["yarn", "run", "preview", "--", "--port", "5111"]
+# Start the application in preview mode on port 5188
+CMD ["yarn", "run", "preview", "--", "--port", "5188"]
+
