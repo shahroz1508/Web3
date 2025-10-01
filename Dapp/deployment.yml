@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-dapp
+  namespace: bubsy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app-dapp
+  template:
+    metadata:
+      labels:
+        app: app-dapp
+    spec:
+      containers:
+        - name: app-dapp
+          image: your-image:latest   # e.g., harbor.app.io/bubsy/app-dapp:latest
+          ports:
+            - containerPort: 5188
+          envFrom:
+            - configMapRef:
+                name: app-dapp-env
