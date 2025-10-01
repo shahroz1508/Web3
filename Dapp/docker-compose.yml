@@ -1,0 +1,11 @@
+version: '3.8'
+services:
+  app-dapp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    #   image: harbor.app.io/bubsy/app-dapp:latest
+    env_file:
+      - .env
+    ports:
+      - "5188:5188"
